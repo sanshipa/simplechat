@@ -21,6 +21,10 @@ bedrock_client = None
 # MODEL_ID = os.environ.get("MODEL_ID", "us.amazon.nova-lite-v1:0")
 MODEL_ID = "https://115f-34-87-30-10.ngrok-free.app"
 
+url = f"{MODEL_ID}/generate"
+        with urllib.request.urlopen(url, data=json.dumps(request_payload).encode('utf-8')) as response:
+            response_body = json.loads(response.read().decode('utf-8'))
+
 def lambda_handler(event, context):
     try:
         # コンテキストから実行リージョンを取得し、クライアントを初期化
